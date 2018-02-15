@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrief <raphaelkriefbm@gmail.com>          +#+  +:+       +#+        */
+/*   By: frahaing <frahaing@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/07 18:44:56 by rkrief            #+#    #+#             */
-/*   Updated: 2017/11/23 18:17:06 by rkrief           ###   ########.fr       */
+/*   Created: 2017/11/05 01:38:56 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/05 01:39:00 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "libft.h"
 
-size_t		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int		j;
+	size_t	i;
 
-	j = 0;
-	while (s[j] != '\0')
-		j++;
-	return (j);
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i])
+		i++;
+	return (i);
 }

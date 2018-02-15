@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 23:11:12 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/07 23:11:15 by frahaing         ###   ########.fr       */
+/*   Created: 2017/11/08 17:33:54 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/14 15:25:59 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int		ft_atoi(const char *str)
 {
-	size_t	i;
+	int i;
+	int res;
+	int neg;
 
 	i = 0;
-	if (n == 0)
-		return ;
-	while (i < n)
+	neg = 1;
+	res = 0;
+	while (str[i] == ' ' || (str[i] >= 7 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		((char *)s)[i++] = '\0';
+		if (str[i] == '-')
+			neg = -1;
+		i++;
 	}
+	while (str[i] == '0')
+		i++;
+	if (i > 18 && neg == -1)
+		return (0);
+	if (i > 18 && neg == 1)
+		return (-1);
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + str[i++] - '0';
+	return (res * neg);
 }

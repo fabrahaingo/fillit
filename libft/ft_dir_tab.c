@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_dir_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2017/12/12 18:59:35 by frahaing          #+#    #+#             */
+/*   Updated: 2017/12/12 20:04:46 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	**ft_dir_tab(char *path)
 {
-	void	*str;
+	int				i;
+	DIR				*opened;
+	struct dirent	*rep;
+	char			**names;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	i = ft_dir_count(path);
+	names = (char **)malloc(sizeof(char *) * i + 1);
+	opened = opendir(path);
+	i = 0;
+	while ((rep = readdir(opened)))
+	{
+		names[i] = (char *)malloc(sizeof(char) * ft_strlen(rep->d_name) + 1);
+		ft_strcpy(names[i], rep->d_name);
+		i++;
+	}
+	names[i] = NULL;
+	closedir(opened);
+	return (names);
 }

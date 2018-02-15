@@ -3,32 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrief <rkrief@student.42.fr>              +#+  +:+       +#+        */
+/*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/09 18:08:31 by rkrief            #+#    #+#             */
-/*   Updated: 2017/11/23 18:19:48 by rkrief           ###   ########.fr       */
+/*   Created: 2017/11/09 12:14:51 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/12 16:33:29 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "libft.h"
 
-char		*ft_strsub(char const *s, unsigned int start, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
 	int		i;
+	int		j;
+	char	*str;
 
-	i = 0;
+	i = start;
+	j = 0;
 	if (s == NULL)
-		return (NULL);
-	if ((str = (char*)malloc(sizeof(char) * (len + 1))) == 0)
-		return (NULL);
-	while (len > 0)
+		return ((char*)s);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (str == NULL)
+		return (str);
+	while (i < (int)start + (int)len)
 	{
-		str[i] = s[start];
+		str[j] = s[i];
 		i++;
-		start++;
-		len--;
+		j++;
 	}
-	str[i] = '\0';
-	return (str);
+	str[j] = '\0';
+	return ((char*)str);
 }

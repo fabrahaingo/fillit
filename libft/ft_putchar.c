@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Raphael <raphaelkriefbm@gmail.com>         +#+  +:+       +#+        */
+/*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 22:41:24 by Raphael           #+#    #+#             */
-/*   Updated: 2017/11/23 18:16:30 by rkrief           ###   ########.fr       */
+/*   Created: 2017/11/07 23:11:58 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/07 23:11:59 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../fillit.h"
+#include "libft.h"
 
 void	ft_putchar(char c)
 {

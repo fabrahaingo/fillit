@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/01/25 20:35:36 by frahaing          #+#    #+#             */
+/*   Updated: 2018/01/25 20:35:40 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	*ft_getenv(char *name, char **env)
 {
-	void	*str;
+	int		i;
+	int		j;
+	char	*value;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
+	i = 0;
+	j = 0;
+	value = NULL;
+	while (env[i])
+	{
+		if (!ft_strncmp(env[i], name, ft_strlen(name) - 1))
+			break ;
+		i++;
+	}
+	if (!env[i])
 		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	while (env[i][j] != '=')
+		j++;
+	return (env[i] + j + 1);
 }

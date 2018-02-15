@@ -1,26 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frahaing <frahaing@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 23:11:12 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/07 23:11:15 by frahaing         ###   ########.fr       */
+/*   Created: 2017/11/02 17:39:23 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/12 16:15:42 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	size_t	i;
+	size_t			i;
 
 	i = 0;
-	if (n == 0)
-		return ;
-	while (i < n)
+	if (dst > src)
 	{
-		((char *)s)[i++] = '\0';
+		i = len - 1;
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i--;
+		}
 	}
+	else
+	{
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
+	}
+	return (dst);
 }

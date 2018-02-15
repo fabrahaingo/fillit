@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_envinit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/02/09 16:46:28 by frahaing          #+#    #+#             */
+/*   Updated: 2018/02/09 16:46:31 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	**ft_envinit(char **envp)
 {
-	void	*str;
+	char	**res;
+	size_t	i;
+	size_t	len;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	len = ft_tablen(envp, sizeof(char *));
+	if ((res = malloc(sizeof(char *) * (len + 1))) == 0)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		res[i] = ft_strdup(envp[i]);
+		i++;
+	}
+	res[i] = 0;
+	return (res);
 }

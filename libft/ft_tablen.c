@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_tablen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/02/09 16:51:40 by frahaing          #+#    #+#             */
+/*   Updated: 2018/02/09 16:51:41 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+int	ft_tablen(const void *tab, int elem)
 {
-	void	*str;
+	int					len;
+	const unsigned char	*ptr;
+	unsigned char		nul[elem];
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	len = 0;
+	ptr = tab;
+	ft_bzero(nul, elem);
+	while (ft_memcmp(ptr + (len * elem), nul, elem) != 0)
+		len++;
+	return (len);
 }

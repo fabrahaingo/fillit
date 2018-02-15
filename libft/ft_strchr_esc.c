@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strchr_esc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/02/09 14:19:24 by frahaing          #+#    #+#             */
+/*   Updated: 2018/02/09 14:19:25 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char		*ft_strchr_esc(const char *str, char c)
 {
-	void	*str;
-
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	if (str == 0)
+		return (0);
+	while (*str && *str != c)
+	{
+		if (*str == '\\' && *(str + 1))
+			str++;
+		str++;
+	}
+	if (*str == 0 && c != 0)
+		return (0);
+	return ((char *)str);
 }

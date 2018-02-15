@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_path_up.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/01/25 18:28:44 by frahaing          #+#    #+#             */
+/*   Updated: 2018/01/25 18:28:45 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	*ft_path_up(char *path)
 {
-	void	*str;
+	char	*pathup;
+	int		i;
+	int		tmp;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	i = 0;
+	tmp = 0;
+	pathup = NULL;
+	if (!ft_letter_there(path, '/'))
+		return (pathup);
+	while (path[i])
+	{
+		if (path[i] == '/')
+			tmp = i;
+		i++;
+	}
+	if (tmp == 0)
+	{
+		pathup = ft_strcutend(path, ft_strlen(path) - 1);
+		return (pathup);
+	}
+	i -= tmp;
+	pathup = ft_strcutend(path, i);
+	return (pathup);
 }

@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2017/11/13 17:57:08 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/13 20:48:11 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	void	*str;
+	t_list	*tmp;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
+	if (lst == NULL)
 		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	tmp = (t_list*)malloc(sizeof(t_list));
+	tmp = f(lst);
+	if (lst->next != NULL)
+		tmp->next = ft_lstmap(lst->next, *f);
+	return (tmp);
 }

@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_stocknextword.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 23:11:12 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/07 23:11:15 by frahaing         ###   ########.fr       */
+/*   Created: 2018/01/25 15:58:25 by frahaing          #+#    #+#             */
+/*   Updated: 2018/01/25 15:58:26 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+static int	ft_wordlen(char *str, char delim)
 {
-	size_t	i;
+	int i;
 
 	i = 0;
-	if (n == 0)
-		return ;
-	while (i < n)
+	while (str[i] != delim && str[i])
+		i++;
+	return (i);
+}
+
+char		*ft_stocknextword(char *str, int i, char delim)
+{
+	char	*word;
+	int		j;
+
+	word = NULL;
+	j = 0;
+	word = (char *)ft_memalloc(sizeof(char) * (ft_wordlen(str + i, delim)));
+	while (str[i] != delim)
 	{
-		((char *)s)[i++] = '\0';
+		if (str[i] == '\0')
+		{
+			word[j] = '\0';
+			return (word);
+		}
+		word[j] = str[i];
+		j++;
+		i++;
 	}
+	word[j] = '\0';
+	return (word);
 }

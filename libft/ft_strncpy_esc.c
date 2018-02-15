@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy_esc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/02/09 14:19:09 by frahaing          #+#    #+#             */
+/*   Updated: 2018/02/09 14:19:11 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	*ft_strncpy_esc(char *dst, const char *src, size_t len)
 {
-	void	*str;
+	size_t	didx;
+	size_t	sidx;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	sidx = 0;
+	didx = 0;
+	while (src[sidx] && sidx < len)
+	{
+		if (src[sidx] == '\\')
+			sidx++;
+		dst[didx++] = src[sidx++];
+	}
+	while (didx < len)
+		dst[didx++] = 0;
+	return (dst);
 }

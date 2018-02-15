@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/01/08 15:40:15 by frahaing          #+#    #+#             */
+/*   Updated: 2018/01/08 16:21:43 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void	ft_sort(char **tab)
 {
-	void	*str;
+	int	i;
+	int	j;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	i = 0;
+	while (tab[i] && tab[i + 1])
+	{
+		j = i + 1;
+		while (tab[j])
+		{
+			if (ft_strcmp(tab[i], tab[j]) > 0)
+				ft_swap((void **)&tab[i], (void **)&tab[j]);
+			j++;
+		}
+		i++;
+	}
 }

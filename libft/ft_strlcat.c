@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <frahaing@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/05 02:20:45 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/05 02:20:48 by frahaing         ###   ########.fr       */
+/*   Created: 2017/11/05 19:00:03 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/13 19:11:12 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int i;
+	size_t i;
+	size_t j;
 
 	i = 0;
-	while (src[i])
+	if (size == 0)
+		return (ft_strlen(src));
+	while (dst[i] && i < size)
+		i++;
+	j = i;
+	while (src[i - j] && i < size - 1)
 	{
-		dst[i] = src[i];
+		dst[i] = src[i - j];
 		i++;
 	}
-	dst[i] = '\0';
-	return (dst);
+	if (j < size)
+		dst[i] = '\0';
+	return (j + ft_strlen(src));
 }

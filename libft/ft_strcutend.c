@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strcutend.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/08 18:49:52 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/11 17:19:58 by frahaing         ###   ########.fr       */
+/*   Created: 2018/01/19 00:09:22 by frahaing          #+#    #+#             */
+/*   Updated: 2018/01/19 00:09:25 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	*ft_strcutend(char *str, int c)
 {
-	void	*str;
+	int		i;
+	int		j;
+	char	*result;
 
-	str = (void*)malloc(size);
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	i = ft_strlen(str) - c;
+	j = 0;
+	result = (char *)malloc(sizeof(char) * i + 1);
+	while (j < i)
+	{
+		result[j] = str[j];
+		j++;
+	}
+	free(str);
+	result[j] = '\0';
+	return (result);
 }

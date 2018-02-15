@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frahaing <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: frahaing <frahaing@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 23:11:12 by frahaing          #+#    #+#             */
-/*   Updated: 2017/11/07 23:11:15 by frahaing         ###   ########.fr       */
+/*   Created: 2017/11/04 19:09:40 by frahaing          #+#    #+#             */
+/*   Updated: 2017/11/04 19:09:42 by frahaing         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*clones1;
+	unsigned char	*clones2;
 
 	i = 0;
-	if (n == 0)
-		return ;
+	clones1 = (unsigned char *)s1;
+	clones2 = (unsigned char *)s2;
 	while (i < n)
 	{
-		((char *)s)[i++] = '\0';
+		if (clones1 && clones2 && clones1[i] != clones2[i])
+			return (clones1[i] - clones2[i]);
+		i++;
 	}
+	return (0);
 }
